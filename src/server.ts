@@ -8,6 +8,7 @@ let server: Server;
 
 const startServer = async () => {
   try {
+    console.log("server is being started...")
     await mongoose.connect(envVars.DB_URL);
     console.log("Connected to DB!");
 
@@ -19,10 +20,10 @@ const startServer = async () => {
   }
 };
 
-async () => {
+(async () => {
   await startServer();
   await seedAdmin();
-};
+})();
 
 process.on("SIGTERM", () => {
   console.log("SIGTERM signal recieved... Server shutting down..");

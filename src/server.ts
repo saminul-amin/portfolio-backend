@@ -13,6 +13,8 @@ const startServer = async () => {
     console.log("Connected to DB!");
 
     server = app.listen(envVars.PORT, () => {
+      const addr = server.address();
+      console.log("address", addr);
       console.log(`Server is listening to port ${envVars.PORT}!`);
     });
   } catch (err) {
@@ -22,7 +24,7 @@ const startServer = async () => {
 
 (async () => {
   await startServer();
-  await seedAdmin();
+  // await seedAdmin();
 })();
 
 process.on("SIGTERM", () => {

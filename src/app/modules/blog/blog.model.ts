@@ -27,7 +27,7 @@ const blogSchema = new Schema<IBlog>(
     },
     slug: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
       lowercase: true,
       trim: true,
@@ -60,7 +60,7 @@ const blogSchema = new Schema<IBlog>(
 
 // Create slug from title
 blogSchema.pre("save", function (next) {
-  if (this.isModified("title")) {
+  if (this.isModified("title") || this.slug === "") {
     this.slug = this.title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")

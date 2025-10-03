@@ -77,6 +77,8 @@ export const createBlog = async (req: AuthRequest, res: Response) => {
   try {
     const { title, content, excerpt, coverImage, tags } = req.body;
 
+    console.log(title, content);
+
     // Validation
     if (!title || !content) {
       return res.status(400).json({
@@ -92,7 +94,7 @@ export const createBlog = async (req: AuthRequest, res: Response) => {
       coverImage,
       tags,
       author: req.user._id,
-      slug: "", // Will be auto-generated in pre-save hook
+      // slug: "", // Will be   auto-generated in pre-save hook
     });
 
     res.status(201).json({
